@@ -1,3 +1,5 @@
+from typing import List
+
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         def backtrack(start_idx, current_combination, current_sum):
