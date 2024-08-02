@@ -1,2 +1,2 @@
 # Leetcode
-Solutions for Leetcode challenges.
+Solutions for Leetcode challenges in all languages.
