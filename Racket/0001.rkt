@@ -1,0 +1,12 @@
+(define/contract (two-sum nums target)
+  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))
+  (let loop ((nums nums) (index 0) (hash (make-hash)))
+    (if (null? nums)
+        '()
+        (let* ((num (car nums))
+               (complement (- target num)))
+          (if (hash-has-key? hash complement)
+              (list (hash-ref hash complement) index)
+              (begin
+                (hash-set! hash num index)
+                (loop (cdr nums) (+ index 1) hash)))))))
