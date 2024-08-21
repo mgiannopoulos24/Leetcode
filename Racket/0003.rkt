@@ -1,22 +1,18 @@
-(define (count-substr str character-vec [start 0] [end 0] [longest-str 0])
-  (if (eq? end (string-length str))
-      longest-str
-      (let ([end-index (char->integer (string-ref str end))])
-           (if (eq? (vector-ref character-vec end-index) 1)
-               (begin
-                 (vector-set! character-vec
-                              (char->integer (string-ref str start))
-                              0)
-                 (count-substr str character-vec
-                               (add1 start) end
-                               longest-str))
-               (begin
-                 (vector-set! character-vec end-index 1)
-                 (count-substr str character-vec
-                               start (add1 end)
-                               (max longest-str 
-                                    (add1 (- end start)))))))))
-
 (define/contract (length-of-longest-substring s)
   (-> string? exact-integer?)
-    (count-substr s (make-vector 256 0)))
+  (let ([char-index-map (make-hash)]
+        [start 0]
+        [max-length 0])
+    
+    (for ([index (in-naturals)]
+          [char (in-string s)])
+      
+      (let ([prev-index (hash-ref char-index-map char #f)])
+        (when (and prev-index (>= prev-index start))
+          (set! start (+ prev-index 1))))
+      
+      (hash-set! char-index-map char index)
+      
+      (set! max-length (max max-length (- (+ index 1) start))))
+    
+    max-length))
