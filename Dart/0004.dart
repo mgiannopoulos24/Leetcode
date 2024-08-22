@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Solution {
   double findMedianSortedArrays(List<int> nums1, List<int> nums2) {
     // Ensure nums1 is the smaller array

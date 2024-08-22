@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Solution {
   int lengthOfLongestSubstring(String s) {
     Map<String, int> charMap = {};
