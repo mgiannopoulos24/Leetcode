@@ -1,0 +1,22 @@
+WITH RankedSalaries AS (
+    SELECT 
+        e.id,
+        e.name,
+        e.salary,
+        e.departmentId,
+        d.name AS departmentName,
+        ROW_NUMBER() OVER (PARTITION BY e.departmentId ORDER BY e.salary DESC) AS rn,
+        DENSE_RANK() OVER (PARTITION BY e.departmentId ORDER BY e.salary DESC) AS dr
+    FROM 
+        Employee e
+    JOIN 
+        Department d ON e.departmentId = d.id
+)
+SELECT 
+    rs.departmentName AS Department,
+    rs.name AS Employee,
+    rs.salary AS Salary
+FROM 
+    RankedSalaries rs
+WHERE 
+    rs.dr <= 3;
