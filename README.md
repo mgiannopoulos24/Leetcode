@@ -1,2 +1,2 @@
 # [Leetcode](https://leetcode.com/)
-Solutions for Leetcode challenges in all languages.
+I am currently working on solving LeetCode challenges in various programming languages. I aim to improve my problem-solving skills and gain a deeper understanding of algorithms and data structures. You can check out my solutions and coding profile on LeetCode [here](https://leetcode.com/u/dwish24/).
